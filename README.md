@@ -46,11 +46,11 @@ Master принимает все изменения (INSERT/UPDATE/DELETE), slav
 
 Конфигурация master-slave размещена в текущем репозитории 
 
-![ссылка на скрин1](https://github.com/YuriKopshev/elk_home_work/blob/main/task2.txt)
+![ссылка на скрин1](https://github.com/YuriKopshev/repl_hw1/blob/main/img/mage%202025-12-22%2012-26-53.png)
 
-![ссылка на скрин2](https://github.com/YuriKopshev/elk_home_work/blob/main/task2.txt)
+![ссылка на скрин2](https://github.com/YuriKopshev/repl_hw1/blob/main/img/Monosnap%2BImage%2B2025-12-22%2B12-38-57.png)
 
-![ссылка на скрин2](https://github.com/YuriKopshev/elk_home_work/blob/main/task2.txt)
+![ссылка на скрин2](https://github.com/YuriKopshev/repl_hw1/blob/main/img/Monosnap%20Image%202025-12-22%2015-24-01.png)
 
 
 ---
