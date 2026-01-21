@@ -82,14 +82,15 @@ Xmas (-sX): FIN+PSH+URG (······U·P··F). Открыт: нет, Закр�
 
 UDP (-sU): UDP пакеты. Открыт: UDP/nothing, Закрыт: ICMP unreachable
 
+ Скриншоты из Kali linux по SYN и FIN(для примера):
 
-![Скриншот1](https://www.example.com/image.jpg)
+![Скриншот1](https://github.com/YuriKopshev/repl_hw1/blob/main/img/photo_2026-01-21%2018.55.19.jpeg)
 
-![Скриншот2](https://www.example.com/image.jpg)
+![Скриншот2](https://github.com/YuriKopshev/repl_hw1/blob/main/img/photo_2026-01-21%2018.55.23.jpeg)
 
-![Скриншот3](https://www.example.com/image.jpg)
+![Скриншот3](https://github.com/YuriKopshev/repl_hw1/blob/main/img/photo_2026-01-21%2018.55.27.jpeg)
 
-![Скриншот4](https://www.example.com/image.jpg)
+![Скриншот4](https://github.com/YuriKopshev/repl_hw1/blob/main/img/photo_2026-01-21%2018.55.30.jpeg)
 
 
 ---
