@@ -1,56 +1,95 @@
-# Домашнее задание к занятию "`«Репликация и масштабирование. Часть 1»`" - `Копшев Юрий`
+# Домашнее задание к занятию "`«Уязвимости и атаки на информационные системы»`" - `Копшев Юрий`
 
 
 ---
 
 ### Задание 1.
 
-На лекции рассматривались режимы репликации master-slave, master-master, опишите их различия.
+Ответьте на следующие вопросы:
+
+Какие сетевые службы в ней разрешены?
+Какие уязвимости были вами обнаружены? (список со ссылками: достаточно трёх уязвимостей)
+
 
 Ответ:
 
-*Master-Slave (односторонняя)*
+Из скана nmap на 192.168.56.102 открыты 20+ портов:
+	•	21/tcp: FTP vsftpd 2.3.4
 
-Master принимает все изменения (INSERT/UPDATE/DELETE), slave только читает и копирует данные с master через binlog.
+	•	22/tcp: SSH OpenSSH 4.7p1
 
-Особенности:
+	•	23/tcp: Telnet Linux telnetd
 
-	•	Запись только на master
-	•	Несколько slave для чтения (load balancing)
-	•	Slave read-only по умолчанию ( read_only=1 )
-	•	Простая настройка, низкая нагрузка на сеть 
+	•	25/tcp: SMTP Postfix
 
-Плюсы: стабильность, нет конфликтов данных
+	•	53/tcp: DNS ISC BIND 9.4.2
 
-Минусы: master — единая точка отказа
+	•	80/tcp: HTTP Apache 2.2.8
 
+	•	111/tcp: RPC rpcbind 2
 
-*Master-Master (двусторонняя)*
+	•	139/445/tcp: Samba smbd 3.X-4.X
 
-Оба сервера — master, каждый может принимать изменения, и они реплицируют друг другу.
+	•	512/tcp: exec netkit-rsh
 
-Особенности:
+	•	1099/tcp: Java RMI GNU Classpath
 
-	•	Запись на любой сервер
-	•	Каждый настроен как slave для другого
-	•	Нужно  auto_increment_increment=2 ,  auto_increment_offset  для избежания конфликтов PRIMARY KEY
-	•	Риск конфликтов при одновременных изменениях одной строки 
-Плюсы: высокая доступность, запись в в любом дата-центре
+	•	1524/tcp: bindshell (root shell!)
 
-Минусы: сложная настройка, конфликты данных
+	•	2049/tcp: NFS
+
+	•	2121/tcp: FTP ProFTPD 1.3.1
+
+	•	3306/tcp: MySQL 5.0.51a
+
+	•	3632/tcp: distccd v1
+
+	•	5900/tcp: VNC
+
+	•	6667/tcp: IRC UnrealIRCd
+
+	•	8009/tcp: AJP Apache Jserv
+
+	•	8180/tcp: HTTP Apache Tomcat
+
+Обнаруженные уязвимости:
+
+	1.	vsftpd 2.3.4 Backdoor (порт 21): https://www.exploit-db.com/exploits/17491
+	2.	Samba Username Map Script (порты 139/445): https://www.exploit-db.com/exploits/16320
+	3.	UnrealIRCd 3.2.8.1 Backdoor (порт 6667): https://www.exploit-db.com/exploits/13853
 
 
 ---
 
 ### Задание 2.
 
-Конфигурация master-slave размещена в текущем репозитории 
+Проведите сканирование Metasploitable в режимах SYN, FIN, Xmas, UDP.
 
-![ссылка на скрин1](https://github.com/YuriKopshev/repl_hw1/blob/main/img/mage%202025-12-22%2012-26-53.png)
+Запишите сеансы сканирования в Wireshark.
 
-![ссылка на скрин2](https://github.com/YuriKopshev/repl_hw1/blob/main/img/Monosnap%2BImage%2B2025-12-22%2B12-38-57.png)
+Ответьте на следующие вопросы:
 
-![ссылка на скрин2](https://github.com/YuriKopshev/repl_hw1/blob/main/img/Monosnap%20Image%202025-12-22%2015-24-01.png)
+Чем отличаются эти режимы сканирования с точки зрения сетевого трафика?
+Как отвечает сервер?
+
+Ответ:
+Различия сканирования (SYN/FIN/Xmas/UDP)
+SYN (-sS): TCP SYN флаги. Открыт: SYN+ACK, Закрыт: RST
+
+FIN (-sF): TCP FIN. Открыт: нет ответа, Закрыт: RST
+
+Xmas (-sX): FIN+PSH+URG (······U·P··F). Открыт: нет, Закрыт: RST
+
+UDP (-sU): UDP пакеты. Открыт: UDP/nothing, Закрыт: ICMP unreachable
+
+
+![Скриншот1](https://www.example.com/image.jpg)
+
+![Скриншот2](https://www.example.com/image.jpg)
+
+![Скриншот3](https://www.example.com/image.jpg)
+
+![Скриншот4](https://www.example.com/image.jpg)
 
 
 ---
